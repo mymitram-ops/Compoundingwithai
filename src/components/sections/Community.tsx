@@ -1,6 +1,7 @@
-import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Users, Lock, Zap, Gift, CheckCircle2 } from "lucide-react";
+import { Users, Lock, Zap, Gift, ArrowRight, CheckCircle2 } from "lucide-react";
+
+const COMMUNITY_URL = "https://www.skool.com/compoundingwithai-9847/about";
 
 const perks = [
   { icon: Gift, text: "Free forever — no credit card needed" },
@@ -8,40 +9,6 @@ const perks = [
   { icon: Users, text: "Growing community of professionals" },
   { icon: Lock, text: "Private, spam-free community" },
 ];
-
-function ActiveCampaignForm() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const loadedRef = useRef(false);
-
-  useEffect(() => {
-    if (loadedRef.current) return;
-    loadedRef.current = true;
-
-    // Inject the form div
-    if (containerRef.current) {
-      const formDiv = document.createElement("div");
-      formDiv.className = "_form_35";
-      containerRef.current.appendChild(formDiv);
-    }
-
-    // Load the ActiveCampaign embed script
-    const script = document.createElement("script");
-    script.src = "https://friendlyagent.activehosted.com/f/embed.php?id=35";
-    script.charset = "utf-8";
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      // Cleanup: remove script if it was added
-      const existingScript = document.querySelector(
-        `script[src="https://friendlyagent.activehosted.com/f/embed.php?id=35"]`
-      );
-      if (existingScript) document.body.removeChild(existingScript);
-    };
-  }, []);
-
-  return <div ref={containerRef} className="w-full" />;
-}
 
 export function Community() {
   return (
@@ -54,7 +21,7 @@ export function Community() {
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent" />
       </div>
 
-      <div className="max-w-5xl mx-auto relative">
+      <div className="max-w-3xl mx-auto relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -71,7 +38,7 @@ export function Community() {
             <span className="gradient-text">Financial Freedom</span>
           </h2>
           <p className="text-slate-400 text-lg max-w-2xl mx-auto leading-relaxed">
-            Join thousands of professionals learning to leverage AI for smarter
+            Join professionals learning to leverage AI for smarter
             investing. It's 100% free — and always will be.
           </p>
         </motion.div>
@@ -95,7 +62,7 @@ export function Community() {
           ))}
         </motion.div>
 
-        {/* Form Container */}
+        {/* CTA Card */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -103,30 +70,28 @@ export function Community() {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="relative"
         >
-          {/* Glow ring around form */}
           <div className="absolute -inset-px rounded-2xl bg-gradient-to-r from-sky-500/20 via-emerald-500/10 to-sky-500/20 blur-sm" />
 
-          <div className="relative glass-card p-8 md:p-10 rounded-2xl">
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-500 to-emerald-500 flex items-center justify-center flex-shrink-0">
-                <Zap className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <h3 className="text-white font-bold text-lg">Get Instant Access</h3>
-                <p className="text-slate-400 text-sm">Join the FREE community in seconds</p>
-              </div>
+          <div className="relative glass-card p-10 md:p-14 rounded-2xl flex flex-col items-center text-center gap-8">
+            <div>
+              <h3 className="text-white font-bold text-2xl mb-2">Ready to join?</h3>
+              <p className="text-slate-400 text-base">
+                Click below to get instant free access on Skool.
+              </p>
             </div>
 
-            {/* ActiveCampaign embed */}
-            <ActiveCampaignForm />
+            <a
+              href={COMMUNITY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary text-lg px-10 py-4"
+            >
+              Join the FREE Community
+              <ArrowRight className="w-5 h-5" />
+            </a>
 
-            {/* Below-form reassurances */}
-            <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 text-slate-400 text-xs">
-              {[
-                "No spam, ever",
-                "Unsubscribe anytime",
-                "Your data stays private",
-              ].map((item) => (
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-5 text-slate-400 text-xs">
+              {["No spam, ever", "Instant access", "Your data stays private"].map((item) => (
                 <span key={item} className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
                   {item}
@@ -136,7 +101,7 @@ export function Community() {
           </div>
         </motion.div>
 
-        {/* Social proof under form */}
+        {/* Social proof */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
