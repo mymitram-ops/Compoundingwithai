@@ -5,7 +5,7 @@ import { Users, Lock, Zap, Gift, CheckCircle2 } from "lucide-react";
 const perks = [
   { icon: Gift, text: "Free forever — no credit card needed" },
   { icon: Zap, text: "Instant access to all resources" },
-  { icon: Users, text: "5,200+ professionals inside" },
+  { icon: Users, text: "Growing community of professionals" },
   { icon: Lock, text: "Private, spam-free community" },
 ];
 
@@ -145,7 +145,7 @@ export function Community() {
           className="mt-8 text-center"
         >
           <p className="text-slate-500 text-sm">
-            Trusted by 5,200+ engineers, analysts, and entrepreneurs.{" "}
+            Trusted by engineers, analysts, and entrepreneurs.{" "}
             <span className="text-emerald-400 font-medium">100% free, always.</span>
           </p>
         </motion.div>

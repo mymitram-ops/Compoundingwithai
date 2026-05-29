@@ -118,7 +118,7 @@ export function Footer() {
               Ready to start your FIRE journey?
             </h3>
             <p className="text-slate-400 text-sm">
-              Join 5,200+ professionals. Free forever.
+              Join our community of professionals. Free forever.
             </p>
           </div>
           <button
